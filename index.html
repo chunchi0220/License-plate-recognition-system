@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Firebase JavaScript SDK 的一部分，用於引入 Firebase 的相關庫文件以及初始化 Firebase App 和 Firebase Database。 -->
+  <!-- 這行程式碼引入了 Firebase App 庫，它是 Firebase SDK 的核心庫，用於初始化 Firebase 應用程序。 -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <!-- 這行程式碼引入了 Firebase Database 庫，它是 Firebase SDK 中用於操作和管理 Firebase Realtime Database 的庫。Firebase Realtime Database 是一個即時同步的 NoSQL 雲端資料庫，開發者可以使用它來儲存和同步應用程序的資料。 -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+</head>
+<body>
+  <h1>車輛停車位置查詢</h1>
+
+  <label for="licenseNum">請輸入車牌號碼：</label>
+  <input type="text" id="licenseNum" placeholder="範例:AAA1234">
+  <button onclick="searchLocation()">查詢</button>
+
+  <div id="result"></div>
+
+  <script>
+    // 初始化 Firebase
+    var firebaseConfig = {
+        apiKey: "AIzaSyCqMOug1ALOC8UlacYin0SFcdTo65OsClE",
+  authDomain: "carboard-22172.firebaseapp.com",
+  databaseURL: "https://carboard-22172-default-rtdb.firebaseio.com",
+  projectId: "carboard-22172",
+  storageBucket: "carboard-22172.appspot.com",
+  messagingSenderId: "177009242506",
+  appId: "1:177009242506:web:14baa68a4a1cc67c051873",
+  measurementId: "G-JJ7T6FRQDR"
+};
+
+    firebase.initializeApp(firebaseConfig);
+
+    // 從 Firebase 中檢索停車位置
+    function searchLocation() {
+      var licenseNum = document.getElementById("licenseNum").value;
+
+      // 取得 Firebase Database 引用
+      var database = firebase.database();
+
+      // 使用車牌號碼檢索停車位置
+      database.ref('/' + licenseNum + '/location').once("value")
+        .then(function(snapshot) {
+          var location = snapshot.val();
+
+          if (location) {
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "車輛停車位置：" + location;
+          } else {
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "找不到該車牌號碼的停車位置";
+          }
+        });
+    }
+  </script>
+</body>
+</html>
