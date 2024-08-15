@@ -1,0 +1,2 @@
+# License-plate-recognition-system
+使用yolov5模型來去辨識車牌，並使用OCR技術去將車牌號碼記錄下來並存到資料庫中，供使用者作更進一步的查詢
