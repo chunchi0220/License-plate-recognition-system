@@ -3,7 +3,7 @@
 * Raspberry Pi4
 * 超音波感測器
 * pi camera(or 其他camera都可以)
-* yolov5
+* yolov5(在yolov5_README.md中有git yolov5的相關資訊)
 * easyocr
 * firebase(這邊可以去firebase建資料庫後有有金鑰)
 * flask
@@ -18,3 +18,5 @@
 * server：偵測車牌(yolov5)、OCR技術(easyocr)
 * database：firebase
 * 後端架構：flask
+## 資料集
+下載處：https://drive.google.com/drive/folders/1JIXJYJIlau_wAgXWVpJqVMvntiyCwFem?usp=sharing
